@@ -72,22 +72,17 @@ class MainActivity : AppCompatActivity() {
         if(this.operation == null){
             this.operation = operation
             storedNumber = txtResult.text.toString().toDouble()
-        }else{
-            if(!txtResult.text.toString().equals("0")){
-                when(this.operation){
-                    1 ->  roundResult(storedNumber?.plus(txtResult.text.toString().toDouble()))
+        }else {
+            if (!txtResult.text.toString().equals("0")) {
+                when (this.operation) {
+                    1 -> roundResult(storedNumber?.plus(txtResult.text.toString().toDouble()))
                     2 -> roundResult(storedNumber?.minus(txtResult.text.toString().toDouble()))
                     3 -> roundResult(storedNumber?.times(txtResult.text.toString().toDouble()))
                     4 -> roundResult(storedNumber?.div(txtResult.text.toString().toDouble()))
                 }
             }
-            if(operation == 5) {
-                this.operation = null
-                storedNumber = null
-            }else{
-                this.operation = operation
-                storedNumber = txtResult.text.toString().toDouble()
-            }
+            this.operation = if (operation == 5) null else operation
+            storedNumber = if (operation == 5) null else txtResult.text.toString().toDouble()
         }
 
     }
